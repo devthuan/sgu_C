@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 // kiểm tra 1 số có đối xứng hay không
@@ -30,29 +31,7 @@ void swap(int &a,int &b){
     a=b;
     b=temp;
 };
-// nhập array
-void inputArray(int a[], int &n){
-    cout<<"Nhập số lượng phần tử: ";
-    cin>>n;
-    for (int i = 0; i < n; i++){
-        cout<<"Nhập phần tử thứ "<< i <<": ";
-        cin>>a[i];
-    }
-};
-// xuất array
-void outputArray(int a[], int n){
-    cout<<"Các phần tử của mảng: ";
-    for (int i = 0; i < n; i++)
-        cout<<a[i]<<"\t";
-    cout<<endl;
-};
-// tìm kiểm trong array
-int search(int a[], int n, int x){
-    for (int i= 0; i < n; i++)
-        if (a[i] == x)
-            return i;   
-    return -1;
-};
+
 // tìm max trong array 
 int max(int a[], int n) {
     int max = a[0], index;
@@ -274,4 +253,93 @@ int USCLN(int a, int b){
 }
 int BSCNN(int a, int b){
     return ((a * b) / USCLN(a, b));
+}
+
+// **********************array*****************************
+
+// Nhập mảng
+void inputArray(int a[], int &n){
+    cout<<"nhap so phan tu trong mang: ";
+    cin>>n;
+    for (int i = 0; i < n; i++){
+        cout<<"Nhap phan tu thu "<< i+1 <<": ";
+        cin>>a[i];
+    }
+};
+
+// xuất mảng
+void outputArray(int a[], int n){
+    cout<<"Cac phan tu cua mang: ";
+    for (int i = 0; i < n; i++) {
+         cout<<a[i] << " "; 
+    }
+
+};
+
+
+// tìm kiếm phần tử trong mảng
+int findElement(int arr[], int n, int vt){
+    for( int i = 0; i < n; i++){
+        if(arr[i] == vt) {
+            return i;
+        }
+    }
+    return false;
+}
+
+// xoá một phần tử trong mảng
+void deleteOneElement(int array[], int &length, int position){
+    for(int i = position; i < length - 1; i++ ){
+        array[i] = array[i+1];
+    }
+    length--;
+}
+
+// xoá một giá trị trong mảng
+void deleteOneValue(int array[], int &length, int value) {
+    for(int i = 0 ; i < length; i++) {
+        if(array[i] == value) {
+            deleteOneElement(array, length, i);
+        }
+    }
+}         
+
+// tìm kiếm phần tử trong mảng
+int timKiem(int a[], int length, int position){
+    for( int i = 0; i < length; i++) {
+        if(a[i] == position) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// thêm phần tử vào mảng
+void insertElement(int array[], int &length, int location, int position){ 
+        for(int i = length; i > location; i--) {
+            array[i] = array[i-1];
+        }
+        array[location] = position;
+        length++;
+    
+}
+
+int fibonacci_dequy(int n){
+    if(n <= 1){
+        return n;
+    } else {
+        return fibonacci_dequy(n-1) + fibonacci_dequy(n-2);
+    }
+}
+
+int fibonacci_not_dequy(int n) {
+    int a = 0, b = 1, fibo;
+
+    for( int i = 1; i <= n; i++) {
+        fibo = a + b;
+        b = a;
+        a = fibo;
+    }
+
+    return fibo;
 }
